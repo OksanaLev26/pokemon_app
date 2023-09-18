@@ -10,7 +10,8 @@ app.get("/", (req, res) => {
   });
 
 app.get("/pokemon/", (req, res) => {
-  res.render('Index', { pokemons: pokemons });
+    res.send(pokemons)
+//   res.render('Index', { pokemons: pokemons });
 });
 
 app.get("/pokemon/:indexOfPokemonArray", (req, res) => {
