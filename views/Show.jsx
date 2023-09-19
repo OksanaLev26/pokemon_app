@@ -16,7 +16,7 @@ const buttonStyles = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "200px",
+  width: "300px",
   height: "60px",
   cursor: "pointer",
   border: "1px solid white",
@@ -34,13 +34,13 @@ const linkStyles = {
 class Show extends React.Component {
   render() {
     const { pokemon } = this.props;
-    const name = `${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`;
+    const name = `${pokemon?.name[0]?.toUpperCase()}${pokemon?.name?.slice(1)}`;
 
     return (
       <div style={myStyle}>
         <h1>Gotta Catch 'Em All</h1>
         <h2>{name}</h2>
-        <img src={`${pokemon.img}.jpg`} />
+        <img src={`${pokemon?.img}.jpg`} />
         <a style={linkStyles} href="/pokemon">
           <div style={buttonStyles}>Back</div>
         </a>

@@ -13,15 +13,28 @@ const myStyle = {
 };
 
 const linkStyles = {
-    textDecoration: "none",
-    color: "white",
-    fontSize: "25px",
-    margin: "20px",
-  };
+  textDecoration: "none",
+  color: "white",
+  fontSize: "25px",
+  margin: "20px",
+};
 
-  const liStyles = {
-    marginBottom: "15px",
-  }
+const liStyles = {
+  marginBottom: "15px",
+};
+
+const buttonStyles = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "300px",
+  height: "60px",
+  cursor: "pointer",
+  border: "1px solid white",
+  borderRadius: "8px",
+  color: "white",
+  fontSize: "28px",
+};
 
 class Index extends React.Component {
   render() {
@@ -35,11 +48,18 @@ class Index extends React.Component {
             )}`;
             return (
               <li style={liStyles}>
-                <a style={linkStyles} href={`/pokemon/${i}`}>{name}</a>
+                <a style={linkStyles} href={`/pokemon/${i}`}>
+                  {name}
+                </a>
               </li>
             );
           })}
         </ul>
+        <nav>
+          <a style={linkStyles} href="/pokemon/new">
+            <div style={buttonStyles}>Create a New Pokemon</div>
+          </a>
+        </nav>
       </div>
     );
   }
