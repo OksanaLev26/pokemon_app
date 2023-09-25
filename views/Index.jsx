@@ -1,5 +1,4 @@
 const React = require("react");
-const pokemons = require("../models/pokemon");
 
 const myStyle = {
   display: "flex",
@@ -9,7 +8,7 @@ const myStyle = {
   padding: "20px",
   color: "#ffffff",
   backgroundColor: "#0f0b54",
-  height: "100vh",
+  minHeight: "100vh",
 };
 
 const linkStyles = {
@@ -38,23 +37,24 @@ const buttonStyles = {
 
 class Index extends React.Component {
   render() {
+    const { pokemons } = this.props;
     return (
       <div style={myStyle}>
         <h1>See All The Pokemon!</h1>
-        <ul>
-          {pokemons.map((pokemon, i) => {
+          {pokemons.map((pokemon) => {
             const name = `${pokemon.name[0].toUpperCase()}${pokemon.name.slice(
               1
             )}`;
             return (
+              <ul key={pokemon.name}>
               <li style={liStyles}>
-                <a style={linkStyles} href={`/pokemon/${i}`}>
+                <a style={linkStyles} href={`/pokemon/${pokemon.id}`}>
                   {name}
                 </a>
               </li>
+              </ul>
             );
           })}
-        </ul>
         <nav>
           <a style={linkStyles} href="/pokemon/new">
             <div style={buttonStyles}>Create a New Pokemon</div>

@@ -1,5 +1,4 @@
 const React = require("react");
-const pokemons = require("../models/pokemon");
 
 const myStyle = {
   display: "flex",
