@@ -37,21 +37,37 @@ const footerStyles = {
   justifyContent: "space-evenly",
 };
 
-class New extends React.Component {
+class Edit extends React.Component {
   render() {
     return (
-      <DefaultLayout title="New Pokemon page">
-        <form style={formStyles} action="/pokemon" method="POST">
-          Name: <input style={inputStyle} type="text" name="name" />
+      <DefaultLayout title="Pokemon Edit Page">
+        <form
+          style={formStyles}
+          action={`/pokemon/${this.props.pokemon._id}?_method=PUT`}
+          method="POST"
+        >
+          Name:{" "}
+          <input
+            style={inputStyle}
+            type="text"
+            name="name"
+            defaultValue={this.props.pokemon.name}
+          />
           <br />
-          Image Link: <input style={inputStyle} type="text" name="img" />
+          Image Link:{" "}
+          <input
+            style={inputStyle}
+            type="text"
+            name="img"
+            defaultValue={this.props.pokemon.img}
+          />
           <br />
           <div style={footerStyles}>
             <a style={linkStyles} href="/pokemon">
               <div style={buttonStyles}>Back</div>
             </a>
-            <button style={buttonStyles} type="submit">
-              Create Pokemon
+            <button type="submit" style={buttonStyles}>
+              Update Pokemon
             </button>
           </div>
         </form>
@@ -59,5 +75,4 @@ class New extends React.Component {
     );
   }
 }
-
-module.exports = New;
+module.exports = Edit;

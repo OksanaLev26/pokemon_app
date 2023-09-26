@@ -1,15 +1,5 @@
 const React = require("react");
-
-const myStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  alignItems: "center",
-  padding: "20px",
-  color: "#ffffff",
-  backgroundColor: "#0f0b54",
-  height: "100vh",
-};
+const DefaultLayout = require("./layouts/Default");
 
 const buttonStyles = {
   display: "flex",
@@ -36,14 +26,13 @@ class Show extends React.Component {
     const name = `${pokemon?.name[0]?.toUpperCase()}${pokemon?.name?.slice(1)}`;
 
     return (
-      <div style={myStyle}>
-        <h1>Gotta Catch 'Em All</h1>
+      <DefaultLayout title="Gotta Catch 'Em All">
         <h2>{name}</h2>
         <img src={`${pokemon?.img}.jpg`} />
         <a style={linkStyles} href="/pokemon">
           <div style={buttonStyles}>Back</div>
         </a>
-      </div>
+      </DefaultLayout>
     );
   }
 }

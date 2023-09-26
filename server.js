@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const methodOverride = require("method-override");
 
 const app = express();
 const jsxEngine = require("jsx-view-engine");
@@ -9,6 +10,7 @@ const Pokemon = require("./models/pokemon.js");
 app.set("view engine", "jsx");
 app.engine("jsx", jsxEngine());
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 dotenv.config();
 
@@ -62,11 +64,41 @@ app.get("/pokemon/new", (req, res) => {
   res.render("New");
 });
 
+// delete
+app.delete("/pokemon/:id", async (req, res) => {
+  try {
+    await Pokemon.findByIdAndRemove(req.params.id);
+    res.redirect("/pokemon");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// update
+app.put("/pokemon/:id", async (req, res) => {
+  try {
+    await Pokemon.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/pokemon");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // create
 app.post("/pokemon", async (req, res) => {
   try {
     await Pokemon.create(req.body);
     res.redirect("/pokemon");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// edit
+app.get("/pokemon/:id/edit", async (req, res) => {
+  try {
+    const foundPokemon = await Pokemon.findById(req.params.id);
+    res.render("Edit", { pokemon: foundPokemon });
   } catch (error) {
     console.log(error);
   }
